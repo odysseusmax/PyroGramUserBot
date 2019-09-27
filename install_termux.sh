@@ -1,6 +1,8 @@
 #!/bin/sh
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K
+# the entire source code is GPL, except this file,
+# which is AGPL
+# (c) 2017
 
 # the below two lines were taken without
 # permission from 

@@ -37,7 +37,7 @@ async def autopic(client, message):
         
         UPDATE_PIC = True
         
-        font = ImageFont.truetype("font.ttf", 70)
+        font = ImageFont.truetype("font.ttf", 80)
         
         await message.edit_text('profile pic updation started')
         
@@ -59,7 +59,7 @@ async def autopic(client, message):
             #content = f"@odysseusmax\nDate: {tim.day}.{tim.month}.{tim.year}\nTime: {tim.hour}:{tim.minute}:{tim.second}\nUTC+5:30"
             content = "t"
                 
-            draw.text((10, width), content,(255,255,255),font=font)
+            draw.text((width/2, height/2), content,(255,255,255),font=font)
                 
             img.save(new_pic)
                 

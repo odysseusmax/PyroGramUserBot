@@ -59,7 +59,7 @@ async def autopic(client, message):
             #content = f"@odysseusmax\nDate: {tim.day}.{tim.month}.{tim.year}\nTime: {tim.hour}:{tim.minute}:{tim.second}\nUTC+5:30"
             content = "t"
                 
-            draw.text((width/2, height/2), content,(255,255,255),font=font)
+            draw.text((0, height/2), content,(255,255,255),font=font)
                 
             img.save(new_pic)
                 

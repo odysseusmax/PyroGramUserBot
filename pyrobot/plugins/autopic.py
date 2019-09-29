@@ -52,13 +52,12 @@ async def autopic(client, message):
                 
             width, height = img.size
             
-            logger.info(f"{width}:{height}")
-            
             draw = ImageDraw.Draw(img)
                 
             tim = datetime.datetime.now(tz=datetime.timezone(datetime.timedelta(minutes=30, hours=5)))
                 
-            content = f"@odysseusmax\nDate: {tim.day}.{tim.month}.{tim.year}\nTime: {tim.hour}:{tim.minute}:{tim.second}\nUTC+5:30"
+            #content = f"@odysseusmax\nDate: {tim.day}.{tim.month}.{tim.year}\nTime: {tim.hour}:{tim.minute}:{tim.second}\nUTC+5:30"
+            content = "t"
                 
             draw.text((10, width), content,(255,255,255),font=font)
                 
@@ -68,7 +67,7 @@ async def autopic(client, message):
                 
             os.remove(new_pic)
                 
-            logger.info(f'profile pic updated at {tim}')
+            logger.info(f'profile pic updated at {tim}. Sleeping for 60s...')
             
             await asyncio.sleep(60)
         

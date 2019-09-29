@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-UPDATE_PIC = True
+UPDATE_PIC = False
 
 
 @Client.on_message(Filters.command("autopic", COMMAND_HAND_LER)  & Filters.me)
@@ -27,10 +27,14 @@ async def autopic(client, message):
     try:
         if UPDATE_PIC:
             UPDATE_PIC = False
-            logger.info('profile updation stoped')
+            logger.info('profile pic updation stopped')
             return
         
         font = ImageFont.truetype("font.ttf", 70)
+        
+        await message.edit_text('profile pic updation started')
+        
+        logger.info('profile pic updation started')
         
         while UPDATE_PIC:
             if int(time.time())%60 == 0:

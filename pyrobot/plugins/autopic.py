@@ -8,7 +8,6 @@ import os
 import time
 import asyncio
 import logging
-import aiofiles
 import datetime
 import traceback
 
@@ -67,7 +66,7 @@ async def autopic(client, message):
                 
             await client.set_profile_photo(new_pic)
                 
-            await aiofiles.os.remove(new_pic)
+            os.remove(new_pic)
                 
             logger.info(f'profile pic updated at {tim}')
             

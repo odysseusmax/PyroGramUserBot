@@ -26,7 +26,7 @@ async def jsonify(client, message):
         await client.send_message('me', the_real_message)
     except Exception as e:
         async with aiofiles.open("message.json", "w+", encoding="utf8") as out_file:
-            out_file.write(str(the_real_message))
+            await out_file.write(str(the_real_message))
         
         await client.send_document(
             chat_id='me',
@@ -36,6 +36,6 @@ async def jsonify(client, message):
             reply_to_message_id=reply_to_id
         )
         
-        os.remove("json.text")
+        os.remove("message.json")
     
     await message.delete()

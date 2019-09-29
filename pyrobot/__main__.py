@@ -23,5 +23,6 @@ if __name__ == "__main__":
         HU_STRING_SESSION,
         api_id=APP_ID,
         api_hash=API_HASH,
-        plugins=plugins
+        plugins=plugins,
+        workers=10
     ).run()

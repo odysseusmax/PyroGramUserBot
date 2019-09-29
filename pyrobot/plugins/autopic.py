@@ -25,6 +25,26 @@ UPDATE_PIC = False
 async def autopic(client, message):
     global UPDATE_PIC
     
+    base_pic = "pics/base_profile_pic.jpg"
+    
+    new_pic = "pics/new_profile_pic.jpg"
+    
+    if not os.path.exists(base_pic):
+        logger.warning(f"Could not find {base_pic}, fetching user profile photos")
+        
+        profile_photos = await client.get_profile_photos("me", limit=1)
+        
+        if profile_photos == []:
+            await message.edit_text("Please save an image to pics/ folder as `base_profile_pic.jpg` and try again. Autopic failed because you don't have a profile photo set and you did not provide one. Sorry")
+            
+            logger.warning(f"User has no profile photo aet and no photo provided. Autopic failed!")
+            
+            return
+        else:
+            logger.warning(f"Found profile photos and downloading one...")
+            
+            await client.download_media(file_ref = profile_photos[0].file_ref, file_name = base_pic)
+    
     try:
         if UPDATE_PIC:
             UPDATE_PIC = False

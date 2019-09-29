@@ -27,8 +27,14 @@ async def autopic(client, message):
     try:
         if UPDATE_PIC:
             UPDATE_PIC = False
-            logger.info('profile pic updation stopped')
+            
+            logger.info('stopping profile pic updation')
+            
+            await message.edit_text('stopping profile pic updation')
+            
             return
+        
+        UPDATE_PIC = True
         
         font = ImageFont.truetype("font.ttf", 70)
         
@@ -61,5 +67,7 @@ async def autopic(client, message):
                 await aiofiles.os.remove(new_pic)
                 
                 logger.info(f'profile pic updated at {tim}')
+        
+        logger.info(f'profile pic updation stopped')
     except Exception:
         logger.error(traceback.format_exc())

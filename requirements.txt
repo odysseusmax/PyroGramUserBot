@@ -1,4 +1,5 @@
 https://github.com/pyrogram/pyrogram/archive/asyncio.zip
+git+https://github.com/Tinche/aiofiles.git
 beautifulsoup4
 hachoir
 Pillow

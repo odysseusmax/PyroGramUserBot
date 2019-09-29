@@ -33,7 +33,5 @@ async def main(APP_ID, API_HASH):
 
 
 if __name__ == "__main__":
-    # Then we need a loop to work with
-    loop = asyncio.get_event_loop()
-    # Then, we need to run the loop with a task
-    loop.run_until_complete(main(APP_ID, API_HASH))
+    
+    asyncio.run(main(APP_ID, API_HASH))

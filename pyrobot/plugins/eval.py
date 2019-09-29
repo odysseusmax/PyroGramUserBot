@@ -11,6 +11,7 @@ import inspect
 import io
 import os
 import sys
+import aiofiles
 import traceback
 
 from pyrobot import MAX_MESSAGE_LENGTH, COMMAND_HAND_LER
@@ -32,7 +33,7 @@ async def eval(client, message):
     stdout, stderr, exc = None, None, None
 
     try:
-        await aexec(cmd, message)
+        await async_exec(cmd, client,  message)
     except Exception:
         exc = traceback.format_exc()
 
@@ -51,11 +52,11 @@ async def eval(client, message):
     else:
         evaluation = "Success"
 
-    final_output = "**EVAL**: `{}` \n\n **OUTPUT**: \n`{}` \n".format(cmd, evaluation)
+    final_output = f"**EVAL**: `{cmd}` \n\n **OUTPUT**: \n`{evaluation}` \n"
 
     if len(final_output) > MAX_MESSAGE_LENGTH:
-        with open("eval.text", "w+", encoding="utf8") as out_file:
-            out_file.write(str(final_output))
+        async with aiofiles.open("eval.text", "w+", encoding="utf8") as out_file:
+            await out_file.write(str(final_output))
         await client.send_document(
             chat_id=message.chat.id,
             document="eval.text",
@@ -69,9 +70,9 @@ async def eval(client, message):
         await message.edit(final_output)
 
 
-async def aexec(code, message):
+async def async_exec(code, client, message):
     exec(
-        f'async def __aexec(message): ' +
+        f'async def __aexec(client, message): ' +
         ''.join(f'\n {l}' for l in code.split('\n'))
     )
-    return await locals()['__aexec'](message)
+    return await locals()['__aexec'](client, message)

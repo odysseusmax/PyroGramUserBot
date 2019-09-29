@@ -10,6 +10,7 @@ import asyncio
 import io
 import os
 import time
+import aiofiles
 
 from pyrobot import MAX_MESSAGE_LENGTH, COMMAND_HAND_LER
 
@@ -41,8 +42,8 @@ async def execution(client, message):
     OUTPUT = f"**QUERY:**\n__Command:__\n`{cmd}` \n__PID:__\n`{process.pid}`\n\n**stderr:** \n`{e}`\n**Output:**\n{o}"
 
     if len(OUTPUT) > MAX_MESSAGE_LENGTH:
-        with open("exec.text", "w+", encoding="utf8") as out_file:
-            out_file.write(str(OUTPUT))
+        async with aiofiles.open("exec.text", "w+", encoding="utf8") as out_file:
+            await out_file.write(str(OUTPUT))
         await client.send_document(
             chat_id=message.chat.id,
             document="exec.text",

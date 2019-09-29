@@ -11,7 +11,6 @@ else:
     from pyrobot.config import Development as Config
 
 
-# TODO: is there a better way?
 APP_ID = Config.APP_ID
 API_HASH = Config.API_HASH
 HU_STRING_SESSION = Config.HU_STRING_SESSION

@@ -52,14 +52,16 @@ async def autopic(client, message):
             img = Image.open(base_pic)
                 
             width, height = img.size
-                
+            
+            logger.info(f"{width}:{height}")
+            
             draw = ImageDraw.Draw(img)
                 
             tim = datetime.datetime.now(tz=datetime.timezone(datetime.timedelta(minutes=30, hours=5)))
                 
             content = f"@odysseusmax\nDate: {tim.day}.{tim.month}.{tim.year}\nTime: {tim.hour}:{tim.minute}:{tim.second}\nUTC+5:30"
                 
-            draw.text((0, width), content,(255,255,255),font=font)
+            draw.text((10, width), content,(255,255,255),font=font)
                 
             img.save(new_pic)
                 

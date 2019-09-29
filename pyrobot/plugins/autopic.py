@@ -22,7 +22,6 @@ UPDATE_PIC = True
 
 @Client.on_message(Filters.command("autopic", COMMAND_HAND_LER)  & Filters.me)
 async def autopic(client, message):
-    logger.info()
     global UPDATE_PIC
     
     try:

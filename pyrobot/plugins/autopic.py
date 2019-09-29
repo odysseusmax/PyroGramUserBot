@@ -37,7 +37,7 @@ async def autopic(client, message):
         
         UPDATE_PIC = True
         
-        font = ImageFont.truetype("font.ttf", 30)
+        font = ImageFont.truetype("font.ttf", 35)
         
         await message.edit_text('profile pic updation started')
         

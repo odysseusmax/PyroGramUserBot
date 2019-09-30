@@ -5,3 +5,4 @@ hachoir
 Pillow
 tgcrypto
 youtube-dl
+heroku3
